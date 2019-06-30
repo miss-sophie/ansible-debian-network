@@ -1,0 +1,12 @@
+---
+- name: Configure Network Interfaces
+  template:
+    src: "interfaces.j2"
+    dest: "/etc/network/interfaces"
+  with_items: network_interfaces
+
+- name: Configure /etc/hosts
+  template:
+    src: "hosts.j2"
+    dest: "/etc/hosts"
+  with_items: network_interfaces

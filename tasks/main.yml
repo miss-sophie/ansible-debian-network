@@ -1,0 +1,17 @@
+---
+# This role curently support only debian based systems.
+- name: Apply network interface definitons from vars.
+  include_tasks: hostvar_defined.yml
+
+- name: Activate IP forwarding
+  lineinfile:
+    path: /etc/sysctl.conf
+    regex: "{{ item }} "
+    line: "{{ item }}=1"
+    state: present
+  with_items:
+    - net.ipv4.ip_forward
+    - net.ipv6.conf.all.forwarding
+  when: ip_forwarding|bool
+  notify:
+    - Restart network

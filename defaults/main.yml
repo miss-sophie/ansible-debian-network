@@ -1,0 +1,4 @@
+---
+hostvar_network_definition: true
+netbox_networl_definition: false
+ip_forwarding: false
